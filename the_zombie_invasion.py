@@ -4,7 +4,7 @@ import itertools
 
 class Actor(object):
     def __init__(self):
-        # Mark to avoid moving an actor more than once.
+        # Mark to avoid moving an actor more than once after tile is processed.
         self.moved_or_created_in_turn = False
         # To not overwrite id.
         self.id_ = None
@@ -155,8 +155,7 @@ class Grid(object):
 
     # One might argue to move this method to a Zombie class as the zombie is
     # the actor. However, this method also alters humans on the grid.
-    # Wouldn't be a drama to put in the Zombie class but for now I'd like keep
-    # the Actor/Zombie interface free from any notion of the grid.
+    # Wouldn't be a drama to put in the Zombie class.
     def _let_zombie_bite_non_zombies_on_tile(self, zombie, cur_x, cur_y):
         tile = self.grid[cur_y][cur_x]
         for actor in tile:
